@@ -1,0 +1,10 @@
+# Python virtual environment
+venv/
+
+# Python cache files
+__pycache__/
+*.py[cod]
+
+# PDF files
+*.pdf
+AZ072_B_3-7_EN_B07TXR5NQ6_ee056d3b-319e-4a2a-9eed-2d105f3ebe24.pdf 
