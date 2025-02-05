@@ -7,8 +7,8 @@ The code displays the temperature and humidity values on a simple web page.
 - Shows temperature and humidity readings from DHT11 sensor
 - Displays a red warning sign if the temperature is above 40°C (blinking)
 - Shows a green "IN LIMIT" sign if the temperature is below 40°C (not blinking)
-- Shows a red warning sign if the humidity is above 95% (blinking)
-- Shows a green "IN LIMIT" sign if the humidity is below 95% (not blinking)
+- Shows a red warning sign if the humidity is above 89% (blinking)
+- Shows a green "IN LIMIT" sign if the humidity is below 89% (not blinking)
 
 ## Setup Instructions
 
@@ -77,33 +77,6 @@ GPIO17 (Pin 11) → DATA (Middle)
 GND (Pin 6)  → GND (Right)
 ```
 
-## Important Notes
-- The code uses the lgpio library which is specifically designed for Raspberry Pi 5
-- Make sure the sensor is properly connected before running the code
-- The web interface automatically refreshes every 5 seconds
-- Temperature warnings trigger at > 40°C
-- Humidity warnings trigger at > 95%
-- The sensor readings update every 2 seconds
-- The AZDelivery DHT11 module has a built-in pull-up resistor, so no additional resistor is needed
-- Operating voltage: 3.3V to 5.5V (we use 3.3V for safety with Raspberry Pi)
-- Temperature range: 0°C to 50°C
-- Humidity range: 20% to 90%
-- Sampling rate: 1Hz (one reading every second)
-
-## Troubleshooting
-
-If you encounter permission issues with GPIO access:
-1. Make sure you're a member of the gpio group:
-```bash
-groups $USER
-```
-2. If not, add yourself to the group:
-```bash
-sudo usermod -a -G gpio $USER
-```
-3. Log out and log back in for the changes to take effect
-
-For more detailed troubleshooting steps, see troubleshooting.md
 
 
 
