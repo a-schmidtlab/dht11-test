@@ -1,24 +1,28 @@
-import Adafruit_DHT
-from time import sleep
+import time
+import board
+import adafruit_dht
 
-# Choose the sensor type and the GPIO pin to which it is connected
-sensor = Adafruit_DHT.DHT11
-pin = 12  # DHT11 sensor connected to GPIO12
+# Create DHT11 device instance on GPIO12
+dht_device = adafruit_dht.DHT11(board.D12)
 
 print("[Press Ctrl+C to end the script]")
 
 try:
     while True:
-        # Read the humidity and temperature from the DHT11
-        humidity, temperature = Adafruit_DHT.read_retry(sensor, pin)
+        try:
+            temperature = dht_device.temperature
+            humidity = dht_device.humidity
 
-        # Wait a bit before reading again
-        sleep(1.5)
+            if humidity is not None and temperature is not None:
+                print(f"Temp = {temperature:.1f}°C, Humidity = {humidity:.1f}%")
+            else:
+                print("Failed to get a valid reading. Trying again...")
+        
+        except RuntimeError as e:
+            # Reading doesn't always work, try again
+            print("Reading from DHT failure:", e)
 
-        # Check if a valid reading was obtained
-        if humidity is not None and temperature is not None:
-            print("Temp = {0:0.1f}°C, Humidity = {1:0.1f}%".format(temperature, humidity))
-        else:
-            print("Failed to get reading. Try again!")
+        time.sleep(1.5)
+
 except KeyboardInterrupt:
     print("Script ended!")
