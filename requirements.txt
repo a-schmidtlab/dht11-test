@@ -1,2 +1,1 @@
-Flask==3.0.0
-lgpio==0.0.0.2 
+adafruit-circuitpython-dht>=3.7.0 
